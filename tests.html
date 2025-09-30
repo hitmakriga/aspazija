@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aspazijas tests</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #111; margin: 0; padding: 1rem; }
+    h1 { color: #6b2e8b; }
+    .card { background: #fff; padding: 1rem; margin: 1rem 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);}
+    .question { margin: 1rem 0; }
+    .question p { margin: 0.5rem 0; }
+    .btn { background: #6b2e8b; color: #fff; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; }
+    .result { margin-top: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Aspazijas tests</h1>
+  <div class="card">
+    <form id="quizForm">
+      <!-- Esošie 5 jautājumi -->
+      <div class="question">
+        <p>1. Kāds ir Aspazijas īstais vārds?</p>
+        <label><input type="radio" name="q1" value="a"> Doroteja Albertīne</label><br>
+        <label><input type="radio" name="q1" value="b"> Johanna Emīlija Lizete Rozenberga</label><br>
+        <label><input type="radio" name="q1" value="c"> Elza Pliekšāne</label>
+      </div>
+
+      <div class="question">
+        <p>2. Kurā gadā Aspazija dzimusi?</p>
+        <label><input type="radio" name="q2" value="a"> 1886</label><br>
+        <label><input type="radio" name="q2" value="b"> 1943</label><br>
+        <label><input type="radio" name="q2" value="c"> 1865</label>
+      </div>
+
+      <div class="question">
+        <p>3. Kuru dzejnieku Aspazija apprecējās 1897. gadā?</p>
+        <label><input type="radio" name="q3" value="a"> Jāzeps Vītols</label><br>
+        <label><input type="radio" name="q3" value="b"> Emīls Dārziņš</label><br>
+        <label><input type="radio" name="q3" value="c"> Jānis Pliekšāns (Rainis)</label>
+      </div>
+
+      <div class="question">
+        <p>4. Kāda žanra darbi veido Aspazijas galveno radošo mantojumu?</p>
+        <label><input type="radio" name="q4" value="a"> Lugas un dzejoļu krājumi</label><br>
+        <label><input type="radio" name="q4" value="b"> Glezniecība</label><br>
+        <label><input type="radio" name="q4" value="c"> Zinātniskie raksti</label>
+      </div>
+
+      <div class="question">
+        <p>5. Kurā Latvijas pilsētā Aspazija pavadīja savus pēdējos dzīves gadus?</p>
+        <label><input type="radio" name="q5" value="a"> Rīga</label><br>
+        <label><input type="radio" name="q5" value="b"> Jūrmala</label><br>
+        <label><input type="radio" name="q5" value="c"> Jelgava</label>
+      </div>
+
+      <!-- 10 jauni jautājumi -->
+      <div class="question">
+        <p>6. Kādu pseidonīmu izvēlējās Elza Pliekšāne?</p>
+        <label><input type="radio" name="q6" value="a"> Aspazija</label><br>
+        <label><input type="radio" name="q6" value="b"> Vaidelote</label><br>
+        <label><input type="radio" name="q6" value="c"> Saulainais stūrītis</label>
+      </div>
+
+      <div class="question">
+        <p>7. Kurā gadā tika publicēta luga "Vaidelote"?</p>
+        <label><input type="radio" name="q7" value="a"> 1894</label><br>
+        <label><input type="radio" name="q7" value="b"> 1897</label><br>
+        <label><input type="radio" name="q7" value="c"> 1905</label>
+      </div>
+
+      <div class="question">
+        <p>8. Kura no šīm lugām tiek uzskatīta par vienu no labākajām?</p>
+        <label><input type="radio" name="q8" value="a"> "Sidraba šķidrauts"</label><br>
+        <label><input type="radio" name="q8" value="b"> "Zaudētās tiesības"</label><br>
+        <label><input type="radio" name="q8" value="c"> "Vaidelote"</label>
+      </div>
+
+      <div class="question">
+        <p>9. Kāds bija Aspazijas pirmās laulības rezultāts?</p>
+        <label><input type="radio" name="q9" value="a"> Laulība šķirta 1897. gadā</label><br>
+        <label><input type="radio" name="q9" value="b"> Ilgstoša laimīga laulība</label><br>
+        <label><input type="radio" name="q9" value="c"> Nekas īpašs nenotika</label>
+      </div>
+
+      <div class="question">
+        <p>10. Kurā laikrakstā Aspazija iepazinās ar Jāni Raini?</p>
+        <label><input type="radio" name="q10" value="a"> Dienas Lapa</label><br>
+        <label><input type="radio" name="q10" value="b"> Latvijas Avīze</label><br>
+        <label><input type="radio" name="q10" value="c"> Jaunākās Ziņas</label>
+      </div>
+
+      <div class="question">
+        <p>11. Kādas sabiedriskās darbības viņa veica pēc 1905. gada revolūcijas?</p>
+        <label><input type="radio" name="q11" value="a"> Piedalījās jaunstrāvnieku sabiedriskajā darbībā</label><br>
+        <label><input type="radio" name="q11" value="b"> Nekādas sabiedriskās darbības</label><br>
+        <label><input type="radio" name="q11" value="c"> Tikai rakstīja dzeju</label>
+      </div>
+
+      <div class="question">
+        <p>12. Kurā gadā Aspazija un Rainis salaulājās?</p>
+        <label><input type="radio" name="q12" value="a"> 1897</label><br>
+        <label><input type="radio" name="q12" value="b"> 1886</label><br>
+        <label><input type="radio" name="q12" value="c"> 1905</label>
+      </div>
+
+      <div class="question">
+        <p>13. Kur viņa pavadīja trimdas gadus?</p>
+        <label><input type="radio" name="q13" value="a"> Šveicē</label><br>
+        <label><input type="radio" name="q13" value="b"> Vācijā</label><br>
+        <label><input type="radio" name="q13" value="c"> Krievijā</label>
+      </div>
+
+      <div class="question">
+        <p>14. Kurā laikposmā Aspazija darbojās Satversmes sapulcē?</p>
+        <label><input type="radio" name="q14" value="a"> 1920-1930</label><br>
+        <label><input type="radio" name="q14" value="b"> 1905-1920</label><br>
+        <label><input type="radio" name="q14" value="c"> 1894-1897</label>
+      </div>
+
+      <div class="question">
+        <p>15. Kurš komponists iestudēja operu "Vaidelote"?</p>
+        <label><input type="radio" name="q15" value="a"> Jāzeps Mediņš</label><br>
+        <label><input type="radio" name="q15" value="b"> Emīls Dārziņš</label><br>
+        <label><input type="radio" name="q15" value="c"> Raimonds Pauls</label>
+      </div>
+
+      <button type="button" class="btn" onclick="checkQuiz()">Iesniegt</button>
+    </form>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function checkQuiz() {
+      const answers = {
+        q1: 'b',
+        q2: 'c',
+        q3: 'c',
+        q4: 'a',
+        q5: 'b',
+        q6: 'a',
+        q7: 'a',
+        q8: 'a',
+        q9: 'a',
+        q10: 'a',
+        q11: 'a',
+        q12: 'a',
+        q13: 'a',
+        q14: 'a',
+        q15: 'a'
+      };
+      let score = 0;
+      for (let q in answers) {
+        const selected = document.querySelector('input[name="'+q+'"]:checked');
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+      document.getElementById('result').innerText = 'Jūsu rezultāts: ' + score + ' no 15';
+    }
+  </script>
+</body>
+</html>
