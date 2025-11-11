@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Labirinta skrējējs — prezentācija</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7dd3fc;
+      --muted:#94a3b8;
+      --text:#e6eef8;
+      --shadow: 0 10px 30px rgba(2,6,23,0.7);
+      --radius:16px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Helvetica,Arial; background:linear-gradient(180deg,#041027 0%, #071329 100%); color:var(--text); -webkit-font-smoothing:antialiased}
+    .stage{max-width:var(--maxw);margin:28px auto;padding:18px;position:relative}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+    header h1{font-size:20px;margin:0}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    /* Slide area */
+    .slideshow{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative}
+    .slides{display:flex;transition:transform .5s cubic-bezier(.2,.9,.2,1);width:100%}
+    .slide{min-width:100%;padding:42px;display:grid;grid-template-columns: 1fr 420px;gap:28px;align-items:center}
+    .slide.single{grid-template-columns:1fr}
+    .card{background:rgba(255,255,255,0.02);border-radius:12px;padding:22px;backdrop-filter: blur(4px)}
+    h2{margin:0 0 10px 0;font-size:26px}
+    p.lead{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+    ul{margin:12px 0 0 18px;color:var(--muted)}
+    .image{
+      height:320px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#081122,#071020);
+      border:1px solid rgba(255,255,255,0.03)
+    }
+    .image img{width:100%;height:100%;object-fit:cover;display:block}
+    /* footer / controls */
+    .controls{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(180deg, rgba(0,0,0,0.03), rgba(255,255,255,0.01))}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .btn:active{transform:translateY(1px)}
+    .progress{height:8px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;flex:1;margin:0 14px}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent), #60a5fa)}
+    .meta{color:var(--muted);font-size:13px}
+    /* responsive */
+    @media (max-width:1000px){
+      .slide{grid-template-columns:1fr}
+      .image{height:220px}
+    }
+    @media (max-width:520px){
+      h2{font-size:20px}
+      .stage{padding:12px}
+      .slide{padding:22px}
+    }
+    /* small notes */
+    .note{font-size:13px;color:var(--muted);margin-top:10px}
+    .quote{font-style:italic;color:#cde7f8;border-left:3px solid rgba(125,211,252,0.2);padding-left:12px;margin-top:12px}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <header>
+      <img src="" alt="" aria-hidden style="width:46px;height:46px;border-radius:8px;background:linear-gradient(90deg,var(--accent),#2563eb)"/>
+      <div>
+        <h1>Labirinta skrējējs — distopijas analīze</h1>
+        <p>Presentācija (10 min) · sagatavots pēc vērtēšanas kritērijiem</p>
+      </div>
+    </header>
+
+    <div class="slideshow" id="slideshow" role="application" aria-label="Prezentācija">
+      <div class="slides" id="slides">
+
+        <!-- 1: IEVADS -->
+        <section class="slide card">
+          <div>
+            <h2>1. Ievads</h2>
+            <p class="lead">
+              Filmas sērija: <strong>Labirinta skrējējs (The Maze Runner)</strong><br>
+              Gadi: 2014–2018 (filmas), balstīta uz Džeimsa Dašnara romānu sērijas.<br>
+              Žanrs: zinātniskā fantastika / distopija.
+            </p>
+            <p class="note">Triloģija: <em>The Maze Runner</em>, <em>The Scorch Trials</em>, <em>The Death Cure</em>.</p>
+          </div>
+          <div class="image" aria-hidden>
+            <!-- Aizvieto ar savu attēlu: images/maze_intro.jpg -->
+            <img src="images/maze_intro.jpg" alt="The Maze Runner — plakāts (viettura attēls)" onerror="this.style.opacity=.08; this.alt='Viettura attēls'"/>
+          </div>
+        </section>
+
+        <!-- 2: SABIEDRĪBAS STRUKTŪRA -->
+        <section class="slide card">
+          <div>
+            <h2>2. Sabiedrības struktūra</h2>
+            <ul>
+              <li><strong>WCKD</strong> — centrālā organizācija, kas kontrolē resursus, eksperimentus un informāciju.</li>
+              <li><strong>Gladeri</strong> — jaunieši iesprostoti Labirintā, bez pagātnes atmiņām.</li>
+              <li>Vara ir koncentrēta zinātniskā birokrātijā; sabiedrības hierarhija balstās uz 'zināšanām' un varu.</li>
+            </ul>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_structure.jpg" alt="Gladeri un labirints (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 3: POLITISKĀ PARALĒLE -->
+        <section class="slide card">
+          <div>
+            <h2>3. Politiskā / vēsturiskā paralēle</h2>
+            <p class="lead">
+              Modeļa tips: <strong>totalitāra / tehnokrātiska</strong> pārvalde — lēmumus pieņem elites zinātnieki, plašā sabiedrība neiesaistās.
+            </p>
+            <ul>
+              <li>Kontrole "zinātnes vārdā" — līdzība ar reāliem totalitārisma elementiem.</li>
+              <li>Uzsvērta kolektīva drošība, kas attaisno indivīda tiesību upurēšanu.</li>
+            </ul>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_power.jpg" alt="WCKD — laboratorijas attēls (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 4: RAIŠANĀS CĒLOŅI -->
+        <section class="slide card">
+          <div>
+            <h2>4. Kas noveda pie distopijas?</h2>
+            <ul>
+              <li>Globāla krīze: pandēmija un sabiedrības sabrukums (Flare vīruss romānā).</li>
+              <li>Zinātnes un tehnoloģiju koncentrācija, etikas trūkums.</li>
+              <li>Sabiedrība meklē ātras 'risinājuma' metodes — tas ļāva elitēm pārņemt kontroli.</li>
+            </ul>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_cause.jpg" alt="Postapokaliptiska ainava (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 5: DEMOKRĀTIJAS SABRUKUMS -->
+        <section class="slide card">
+          <div>
+            <h2>5. Kā demokrātija tiek apspiesta?</h2>
+            <ul>
+              <li>Nav caurskatāmas varas, nav brīvības izvēlēties — lēmumi pieņem bez sabiedrības līdzdalības.</li>
+              <li>Cilvēki tiek izmantoti kā eksperimentu objekti — tiesības un cilvēka cieņa tiek upurēta.</li>
+            </ul>
+            <p class="quote">"Mērķis attaisno līdzekļus" — distopijas morālā dilemma.</p>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_democracy.jpg" alt="Eksperimenti un kontrole (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 6: INDIVĪDA LOMA -->
+        <section class="slide card">
+          <div>
+            <h2>6. Indivīda loma un attiecības ar valsti</h2>
+            <ul>
+              <li>Indivīds sāk kā bezspēcīgs (Gladeri), bet caur rīcību spēj ietekmēt sistēmu.</li>
+              <li>Tomasas pretestība ilustrē personīgās iniciatīvas spēku pret autoritāti.</li>
+            </ul>
+            <p class="note">Stāsts uzsver personiskās izvēles un ētikas nozīmi.</p>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_thomas.jpg" alt="Tomass (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 7: PROPAGANDA UN KONTROLE -->
+        <section class="slide card">
+          <div>
+            <h2>7. Propaganda un kontroles sistēmas</h2>
+            <ul>
+              <li>Atmiņu manipulācija un eksperimenti kā kontroles rīks.</li>
+              <li>Informācijas slēpšana; 'mīti' par iemeslu labirintam tiek uzturēti.</li>
+              <li>Tehnoloģiska izsekošana un selektīva informācijas izplatīšana.</li>
+            </ul>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_control.jpg" alt="Kontroles tehnoloģijas (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 8: EMOCIJU KONTROLE -->
+        <section class="slide card">
+          <div>
+            <h2>8. Emociju un personīgās dzīves manipulācija</h2>
+            <ul>
+              <li>Personiskās attiecības riskē tikt traucētas vai ierobežotas — emocijas uzskatītas par vājumu.</li>
+              <li>Mīlestība starp varoņiem kļūst par cerības un morāles pamatu.</li>
+            </ul>
+            <p class="note">Cilvēku jūtu saglabāšana ir pretestība pret dehumanizāciju.</p>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_emotion.jpg" alt="Emocijas pret sistemu (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 9: NELĪDZĪBAS ASPEKTI -->
+        <section class="slide card">
+          <div>
+            <h2>9. Elitārie vs. vienkāršie</h2>
+            <ul>
+              <li>Elite (WCKD) dzīvo privileģēti un aizsargāti; pārējie cieš.</li>
+              <li>Liela nevienlīdzība — piekļuve ārstiem, resursiem un drošībai ir izvēle.</li>
+              <li>Ikdienas realitāte: pretestība, izdzīvošana un morāles izvēles.</li>
+            </ul>
+          </div>
+          <div class="image" aria-hidden>
+            <img src="images/maze_inequality.jpg" alt="Nevienlīdzība distopijā (viettura)" onerror="this.style.opacity=.08"/>
+          </div>
+        </section>
+
+        <!-- 10: SECINĀJUMI -->
+        <section class="slide card single">
+          <div>
+            <h2>10. Secinājumi & novēršana</h2>
+            <ul>
+              <li><strong>Ticamība:</strong> aptuveni 60% — iespējama, ja ētika tiek upurēta krīzes laikā.</li>
+              <li><strong>Ko darīt, lai novērstu:</strong> stiprināt cilvēktiesības, ētiskas pārbaudes, caurspīdīgu zinātni un sabiedrības līdzdalību.</li>
+              <li><strong>Mācība:</strong> tehnoloģija bez morāles var kļūt par instrumentu apspiešanai.</li>
+            </ul>
+            <p class="quote">"Mēs neesam viņu eksperimenti." — prezentācijas morālais atgādinājums.</p>
+            <p class="note">Ja vēlaties, es varu izveidot šo prezentāciju arī kā PowerPoint (PPTX) vai PDF.</p>
+          </div>
+        </section>
+
+      </div> <!-- slides -->
+    </div> <!-- slideshow -->
+
+    <div class="controls">
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="prev" title="Iepriekšējais (←)">← Iepriekš</button>
+        <button class="btn" id="next" title="Nākamais (→)">Nākamais →</button>
+      </div>
+
+      <div style="display:flex;flex:1;align-items:center;gap:12px">
+        <div class="progress" aria-hidden><div class="bar" id="bar"></div></div>
+        <div class="meta" id="meta">Slaids 1 / 10</div>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="start-present" title="Sākt prezentāciju">Sākt</button>
+        <button class="btn" id="download-html" title="Lejupielādēt HTML">Lejupielādēt</button>
+      </div>
+    </div>
+
+  </div> <!-- stage -->
+
+  <script>
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const total = slides.length;
+      let index = 0;
+
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      const bar = document.getElementById('bar');
+      const meta = document.getElementById('meta');
+      const startBtn = document.getElementById('start-present');
+      const downloadBtn = document.getElementById('download-html');
+
+      function update(){
+        slidesEl.style.transform = `translateX(-${index * 100}%)`;
+        bar.style.width = `${((index+1)/total)*100}%`;
+        meta.textContent = `Slaids ${index+1} / ${total}`;
+      }
+
+      prevBtn.addEventListener('click', ()=>{ index = Math.max(0, index-1); update(); });
+      nextBtn.addEventListener('click', ()=>{ index = Math.min(total-1, index+1); update(); });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight' || e.key === 'PageDown') { index = Math.min(total-1, index+1); update(); }
+        if(e.key === 'ArrowLeft' || e.key === 'PageUp') { index = Math.max(0, index-1); update(); }
+        if(e.key === 'Home') { index = 0; update(); }
+        if(e.key === 'End') { index = total-1; update(); }
+      });
+
+      // Start fullscreen presentation (simple)
+      startBtn.addEventListener('click', async ()=>{
+        const el = document.documentElement;
+        try {
+          if (el.requestFullscreen) await el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) await el.webkitRequestFullscreen();
+        } catch (err){}
+        index = 0; update();
+      });
+
+      // Download current HTML as file
+      downloadBtn.addEventListener('click', ()=>{
+        const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Labirinta_skrejejs_prezentacija.html';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // Touch: swipe
+      let startX = null;
+      slidesEl.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+      slidesEl.addEventListener('touchend', e => {
+        if (startX == null) return;
+        const endX = e.changedTouches[0].clientX;
+        if (endX - startX > 40) index = Math.max(0, index-1);
+        else if (startX - endX > 40) index = Math.min(total-1, index+1);
+        startX = null; update();
+      });
+
+      // initial
+      update();
+    })();
+  </script>
+</body>
+</html>
