@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorijas darbs: Oma likums (aizpildīts ar shēmu)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .measurement-table input {
+            width: 90%;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .equipment-list {
+            list-style: none;
+            padding: 0;
+        }
+        .equipment-list li {
+            margin: 5px 0;
+        }
+        .graph-container {
+            margin: 20px 0;
+            height: 300px;
+        }
+        .conclusions {
+            margin: 20px 0;
+        }
+        .conclusions textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+        .conclusions p {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .button-container {
+            margin: 20px 0;
+        }
+        .filled-value {
+            background-color: #e8f4f8;
+            font-weight: bold;
+        }
+        .circuit-diagram {
+            margin: 20px 0;
+            text-align: center;
+            border: 1px dashed #999;
+            padding: 15px;
+            background-color: #fafafa;
+            border-radius: 8px;
+        }
+        .circuit-diagram img {
+            max-width: 100%;
+            height: auto;
+            max-height: 250px;
+        }
+        .circuit-diagram figcaption {
+            font-style: italic;
+            color: #555;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Darba lapa laboratorijas darbam</h1>
+        <h2>Oma likuma ķēdes posmam izpēte (rezistors un spuldzīte)</h2>
+
+        <h3>1. Darba mērķis</h3>
+        <p>Eksperimentāli pārbaudīt Oma likumu ķēdes posmam, noteikt rezistora elektrisko pretestību un salīdzināt to ar kvēlspuldzes uzvedību.</p>
+
+        <h3>2. Darba shēma</h3>
+        <figure class="circuit-diagram">
+            <img src="https://i.ibb.co/hxbV3T8g/file-000000005ef8720ab43ce868c17aa231.png" 
+                 alt="Elektriskā shēma: ampērmetrs (A) virknē, voltmetrs (V) paralēli rezistoram (R)">
+            <figcaption>
+                <strong>Elektriskā shēma:</strong> ampērmetrs (A) slēgts virknē, voltmetrs (V) paralēli rezistoram (R).<br>
+                <small>(X un W apzīmē slēdzi un barošanas avota spailes)</small>
+            </figcaption>
+        </figure>
+
+        <h3>3. Darba piederumi</h3>
+        <ul class="equipment-list">
+            <li>□ Barošanas avots</li>
+            <li>□ Rezistors</li>
+            <li>□ Kvēlspuldze</li>
+            <li>□ Ampērmetrs</li>
+            <li>□ Voltmetrs</li>
+            <li>□ Slēdzis</li>
+            <li>□ Vadi</li>
+        </ul>
+
+        <h3>4. Darba gaita</h3>
+        <ol>
+            <li>Salikt elektrisko ķēdi atbilstoši shēmai: ampērmetru slēdz virknē, voltmetru — paralēli rezistoram (vai spuldzītei).</li>
+            <li>Iestatīt nelielu spriegumu.</li>
+            <li>Nolasīt strāvas stiprumu un spriegumu.</li>
+            <li>Mainīt spriegumu vismaz 5 reizes (gan rezistoram, gan spuldzītei).</li>
+            <li>Rezultātus ierakstīt tabulā.</li>
+        </ol>
+
+        <h3>5. Mērījumu tabula (rezistors)</h3>
+        <table class="measurement-table" id="resistor-table">
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Spriegums U, V</th>
+                    <th>Strāva I, A</th>
+                    <th>Pretestība R = U/I , Ω</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td><input type="number" step="0.01" id="r_u1" value="2.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="r_i1" value="0.20" class="filled-value"></td>
+                    <td><span id="r_r1">10.00</span></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><input type="number" step="0.01" id="r_u2" value="4.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="r_i2" value="0.41" class="filled-value"></td>
+                    <td><span id="r_r2">9.76</span></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td><input type="number" step="0.01" id="r_u3" value="6.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="r_i3" value="0.61" class="filled-value"></td>
+                    <td><span id="r_r3">9.84</span></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><input type="number" step="0.01" id="r_u4" value="8.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="r_i4" value="0.80" class="filled-value"></td>
+                    <td><span id="r_r4">10.00</span></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td><input type="number" step="0.01" id="r_u5" value="10.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="r_i5" value="1.01" class="filled-value"></td>
+                    <td><span id="r_r5">9.90</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>6. Mērījumu tabula (kvēlspuldze)</h3>
+        <table class="measurement-table" id="bulb-table">
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Spriegums U, V</th>
+                    <th>Strāva I, A</th>
+                    <th>Pretestība R = U/I , Ω</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td><input type="number" step="0.01" id="b_u1" value="1.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="b_i1" value="0.12" class="filled-value"></td>
+                    <td><span id="b_r1">8.33</span></td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><input type="number" step="0.01" id="b_u2" value="2.50" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="b_i2" value="0.21" class="filled-value"></td>
+                    <td><span id="b_r2">11.90</span></td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td><input type="number" step="0.01" id="b_u3" value="4.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="b_i3" value="0.28" class="filled-value"></td>
+                    <td><span id="b_r3">14.29</span></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><input type="number" step="0.01" id="b_u4" value="6.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="b_i4" value="0.35" class="filled-value"></td>
+                    <td><span id="b_r4">17.14</span></td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td><input type="number" step="0.01" id="b_u5" value="8.00" class="filled-value"></td>
+                    <td><input type="number" step="0.01" id="b_i5" value="0.40" class="filled-value"></td>
+                    <td><span id="b_r5">20.00</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button onclick="calculateResistance()">Pārrēķināt pretestību</button>
+            <button onclick="updateGraphs()">Atjaunot grafikus</button>
+            <button onclick="resetData()">Dzēst visus datus</button>
+        </div>
+
+        <h3>7. Aprēķina piemērs</h3>
+        <p>Rezistora vidējā pretestība: <span id="avg-resistance">9.90</span> Ω</p>
+        <p>Spuldzes pretestība pie dažādiem spriegumiem (secinājumiem):</p>
+        <ul>
+            <li>Pie U = <span id="bulb-u1">1.00</span> V, R = <span id="bulb-r1">8.33</span> Ω</li>
+            <li>Pie U = <span id="bulb-u5">8.00</span> V, R = <span id="bulb-r5">20.00</span> Ω</li>
+        </ul>
+
+        <h3>8. Grafiki</h3>
+        <div class="graph-container">
+            <canvas id="resistor-chart"></canvas>
+        </div>
+        <p><strong>Rezistoram:</strong> horizontālā ass — spriegums U (V), vertikālā ass — strāva I (A).</p>
+        
+        <div class="graph-container">
+            <canvas id="bulb-chart"></canvas>
+        </div>
+        <p><strong>Spuldzei:</strong> horizontālā ass — spriegums U (V), vertikālā ass — strāva I (A).</p>
+
+        <h3>9. Secinājumi</h3>
+        <div class="conclusions">
+            <p>1. Vai rezistoram strāvas stiprums ir tieši proporcionāls spriegumam?</p>
+            <textarea rows="2" style="background-color: #f9f9f9;">Jā, rezistoram strāvas stiprums ir tieši proporcionāls spriegumam, ko apstiprina lineārā sakarība grafikā un aptuveni nemainīgā pretestība (ap 10 Ω).</textarea>
+            
+            <p>2. Vai rezistora pretestība mērījumos bija aptuveni nemainīga?</p>
+            <textarea rows="2" style="background-color: #f9f9f9;">Jā, rezistora pretestība saglabājās aptuveni nemainīga — svārstības bija tikai ±0.24 Ω, kas ir nelielas un var būt saistītas ar mērījumu kļūdām.</textarea>
+            
+            <p>3. Vai spuldzes pretestība bija nemainīga? Kāpēc tā mainījās?</p>
+            <textarea rows="3" style="background-color: #f9f9f9;">Nē, spuldzes pretestība nebija nemainīga — tā pieauga no 8.33 Ω līdz 20.00 Ω. Tas notiek tāpēc, ka, palielinoties spriegumam, kvēldiegs uzkarst un tā pretestība palielinās (metāliem pretestība pieaug līdz ar temperatūru).</textarea>
+            
+            <p>4. Vai eksperimentāli apstiprinājās Oma likums rezistoram?</p>
+            <textarea rows="2" style="background-color: #f9f9f9;">Jā, Oma likums rezistoram apstiprinājās — strāva ir tieši proporcionāla spriegumam, un pretestība ir konstanta (grafiks ir taisne).</textarea>
+            
+            <p>5. Iespējamās kļūdas un neprecizitātes:</p>
+            <textarea rows="4" style="background-color: #f9f9f9;">Iespējamās kļūdas: ampērmetra un voltmetra rādījumu noapaļošana, kontaktu pārejas pretestība, barošanas avota sprieguma svārstības, vadu pretestība, kā arī cilvēka kļūda, nolasot mērierīču rādījumus. Spuldzes gadījumā precīzu mērījumu apgrūtina straujā temperatūras maiņa.</textarea>
+        </div>
+    </div>
+
+    <script>
+        let resistorChart, bulbChart;
+
+        function initCharts() {
+            const resistorCtx = document.getElementById('resistor-chart').getContext('2d');
+            const bulbCtx = document.getElementById('bulb-chart').getContext('2d');
+
+            // Dati rezistoram
+            const resistorData = [
+                {x: 2.00, y: 0.20},
+                {x: 4.00, y: 0.41},
+                {x: 6.00, y: 0.61},
+                {x: 8.00, y: 0.80},
+                {x: 10.00, y: 1.01}
+            ];
+
+            // Dati spuldzei
+            const bulbData = [
+                {x: 1.00, y: 0.12},
+                {x: 2.50, y: 0.21},
+                {x: 4.00, y: 0.28},
+                {x: 6.00, y: 0.35},
+                {x: 8.00, y: 0.40}
+            ];
+
+            resistorChart = new Chart(resistorCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Rezistors',
+                        data: resistorData,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        showLine: true,
+                        tension: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Spriegums U (V)'
+                            },
+                            min: 0,
+                            max: 11
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Strāva I (A)'
+                            },
+                            min: 0,
+                            max: 1.2
+                        }
+                    }
+                }
+            });
+
+            bulbChart = new Chart(bulbCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Kvēlspuldze',
+                        data: bulbData,
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        showLine: true,
+                        tension: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Spriegums U (V)'
+                            },
+                            min: 0,
+                            max: 9
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Strāva I (A)'
+                            },
+                            min: 0,
+                            max: 0.5
+                        }
+                    }
+                }
+            });
+        }
+
+        function calculateResistance() {
+            // Aprēķināt rezistoru pretestības
+            let sumR = 0;
+            let countR = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                const u = parseFloat(document.getElementById(`r_u${i}`).value);
+                const I = parseFloat(document.getElementById(`r_i${i}`).value);
+                
+                if (!isNaN(u) && !isNaN(I) && I !== 0) {
+                    const R = u / I;
+                    document.getElementById(`r_r${i}`).innerText = R.toFixed(2);
+                    sumR += R;
+                    countR++;
+                } else {
+                    document.getElementById(`r_r${i}`).innerText = '-';
+                }
+            }
+            
+            // Vidējā pretestība rezistoram
+            if (countR > 0) {
+                const avgR = sumR / countR;
+                document.getElementById('avg-resistance').innerText = avgR.toFixed(2);
+            } else {
+                document.getElementById('avg-resistance').innerText = '_______';
+            }
+
+            // Aprēķināt spuldzes pretestības
+            for (let i = 1; i <= 5; i++) {
+                const u = parseFloat(document.getElementById(`b_u${i}`).value);
+                const I = parseFloat(document.getElementById(`b_i${i}`).value);
+                
+                if (!isNaN(u) && !isNaN(I) && I !== 0) {
+                    const R = u / I;
+                    document.getElementById(`b_r${i}`).innerText = R.toFixed(2);
+                } else {
+                    document.getElementById(`b_r${i}`).innerText = '-';
+                }
+            }
+
+            // Atjaunot spuldzes pretestību piemērus
+            const bulbU1 = parseFloat(document.getElementById('b_u1').value);
+            const bulbR1 = document.getElementById('b_r1').innerText;
+            const bulbU5 = parseFloat(document.getElementById('b_u5').value);
+            const bulbR5 = document.getElementById('b_r5').innerText;
+
+            document.getElementById('bulb-u1').innerText = isNaN(bulbU1) ? '___' : bulbU1.toFixed(2);
+            document.getElementById('bulb-r1').innerText = bulbR1;
+            document.getElementById('bulb-u5').innerText = isNaN(bulbU5) ? '___' : bulbU5.toFixed(2);
+            document.getElementById('bulb-r5').innerText = bulbR5;
+        }
+
+        function updateGraphs() {
+            // Savākt datus rezistoram
+            const resistorData = [];
+            for (let i = 1; i <= 5; i++) {
+                const u = parseFloat(document.getElementById(`r_u${i}`).value);
+                const I = parseFloat(document.getElementById(`r_i${i}`).value);
+                if (!isNaN(u) && !isNaN(I)) {
+                    resistorData.push({x: u, y: I});
+                }
+            }
+            
+            resistorData.sort((a, b) => a.x - b.x);
+            
+            resistorChart.data.datasets[0].data = resistorData;
+            resistorChart.update();
+
+            // Savākt datus spuldzei
+            const bulbData = [];
+            for (let i = 1; i <= 5; i++) {
+                const u = parseFloat(document.getElementById(`b_u${i}`).value);
+                const I = parseFloat(document.getElementById(`b_i${i}`).value);
+                if (!isNaN(u) && !isNaN(I)) {
+                    bulbData.push({x: u, y: I});
+                }
+            }
+            
+            bulbData.sort((a, b) => a.x - b.x);
+            
+            bulbChart.data.datasets[0].data = bulbData;
+            bulbChart.update();
+        }
+
+        function resetData() {
+            // Atjaunot sākotnējos datus
+            document.getElementById('r_u1').value = '2.00';
+            document.getElementById('r_i1').value = '0.20';
+            document.getElementById('r_u2').value = '4.00';
+            document.getElementById('r_i2').value = '0.41';
+            document.getElementById('r_u3').value = '6.00';
+            document.getElementById('r_i3').value = '0.61';
+            document.getElementById('r_u4').value = '8.00';
+            document.getElementById('r_i4').value = '0.80';
+            document.getElementById('r_u5').value = '10.00';
+            document.getElementById('r_i5').value = '1.01';
+            
+            document.getElementById('b_u1').value = '1.00';
+            document.getElementById('b_i1').value = '0.12';
+            document.getElementById('b_u2').value = '2.50';
+            document.getElementById('b_i2').value = '0.21';
+            document.getElementById('b_u3').value = '4.00';
+            document.getElementById('b_i3').value = '0.28';
+            document.getElementById('b_u4').value = '6.00';
+            document.getElementById('b_i4').value = '0.35';
+            document.getElementById('b_u5').value = '8.00';
+            document.getElementById('b_i5').value = '0.40';
+            
+            calculateResistance();
+            updateGraphs();
+        }
+
+        window.onload = function() {
+            initCharts();
+            calculateResistance();
+        };
+    </script>
+</body>
+</html>
